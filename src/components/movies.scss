@@ -1,0 +1,114 @@
+@import '../assets/scss/vars.scss';
+.movies-list{
+	&__paginator{
+		padding: 15px 0;
+		border-top: 1px solid #000;
+		margin-top: 15px;
+		border-top: 1px solid #6152a8;
+	}
+}
+.movie{
+	&-item{
+		&__button{
+			&-icon{
+				width: 22px;
+				height: 22px;
+				fill: #fff;
+			}
+		}
+		&__poster{
+			min-height: 250px;
+			flex-basis: 200px;
+			min-width: 200px;
+			background-color: #eee;
+			background-size: cover;
+			background-position: 50% 50%;
+			&_big{
+				flex-basis: 300px;
+				min-width: 300px;
+				min-height: 350px;
+			}
+		}
+		&__info{
+			flex-grow: 1;
+			margin-left: 15px;
+			&_row{
+				@include flex;
+			}
+		}
+		&__title{
+			font-weight: bold;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+		&__year{
+			margin-bottom: 10px;
+		}
+		&__description{
+			margin-top: 20px;
+		}
+		&__nav{
+			width: 100px;
+			min-width: 100px;
+			@include flex;
+			@include gorizontal-align(flex-end);
+		}
+		&+&{
+			padding-top: 15px;
+			&::after{
+				content: "";
+				display: block;
+				background-color: #6152a8;
+				height: 1px;
+				top: 7px;
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+		}
+		&__nav{
+			&_bottom{
+				margin-top: 15px;
+			}
+		}
+		&__left-bar{
+			position: relative;
+		}
+		position: relative;
+	}
+	&-page{
+		padding-top: 50px;
+		&__title{
+			position: absolute;
+			top: -30px;
+			left: 0;
+		}
+	}
+}
+.button{
+	&_like{
+		background-image: url('../assets/images/heart1.svg');
+		background-size: 70%;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-color: #6152a8;
+		transition: 0.5s all;
+		&:hover{
+			background-color: #000;
+			background-size: 70%;
+			background-image: url('../assets/images/heart.svg');
+		}
+	}
+	&_dislike{
+		background-image: url('../assets/images/close.svg');
+		background-size: 65%;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	}
+	&_delete{
+		background-image: url('../assets/images/trash.svg');
+		background-size: 65%;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	}
+}

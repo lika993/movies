@@ -1,0 +1,31 @@
+@import '../assets/scss/vars.scss';
+.search{
+	&__form{
+		@include flex-basis(100%);
+	}
+	@include flex;
+	@include vertical-align-middle;
+	@include flex-wrap;
+	&__centered{
+		@include flex;
+		@include vertical-align-middle;
+		@include flex-wrap;
+
+	}
+	&__title{
+		display: block;
+	}
+	&__input{
+		width: 100%;
+		display: block;
+		height: 30px;
+		margin-top: 10px;
+		padding-left: 5px;
+		@inclide border-radius(3px);
+	}
+	&__button{
+		display: none;
+	}
+	border: 1px solid #000;
+	margin-bottom: 15px;
+}

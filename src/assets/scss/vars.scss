@@ -1,0 +1,45 @@
+$searchHeight: 60px;
+$menuHeight: 60px;
+
+@mixin flex {
+	display: -webkit-flex;	
+	display: -moz-flex;	
+	display: -o-flex;	
+	display: flex;
+}
+@mixin vertical-align-middle {
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-o-align-items: center;
+	align-items: center;
+}
+@mixin flex-wrap {
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-o-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+@mixin gorizontal-align-middle {
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-o-justify-content: center;
+	justify-content: center;
+}
+@mixin gorizontal-align($position){
+	-webkit-justify-content: $position;
+	-moz-justify-content: $position;
+	-o-justify-content: $position;
+	justify-content: $position;
+}
+@mixin flex-basis($width) {
+  -webkit-flex-basis: $width;
+     -moz-flex-basis: $width;
+      -ms-flex-basis: $width;
+          flex-basis: $width;
+}
+@mixin border-radius($size) {
+  -webkit-border-radius: $size;
+     -moz-border-radius: $size;
+      -ms-border-radius: $size;
+          border-radius: $size;
+}
