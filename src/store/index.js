@@ -16,6 +16,13 @@ const store = new Vuex.Store({
 		changeMovies (state, data) {
 			 state.movies = data;
 		},
+		changeMovieProps (state, item) {
+			 let indexOfFavoritesMovies = state.movies.findIndex(el => el.imdbID == item.imdbID);
+			 if(indexOfFavoritesMovies != -1){
+			 	Vue.set(state.movies, indexOfFavoritesMovies, item)
+			 }
+			 state.movies;
+		},
 		addToData (state, data) {
 			  state.movies.push(data);
 		},
@@ -28,13 +35,13 @@ const store = new Vuex.Store({
 			 let blackFilms = new Set(state.blackFilms);
 			 blackFilms.add(item);
 			 state.blackFilms = Array.from(blackFilms);
-			 var indexOfFavoritesMovies = state.favorites.findIndex(c => c.imdbID == item.imdbID);
+			 let indexOfFavoritesMovies = state.favorites.findIndex(c => c.imdbID == item.imdbID);
 			 if(indexOfFavoritesMovies != -1){
 			 	Vue.delete(state.favorites, indexOfFavoritesMovies);
 			 }
 		},
 		deleteFromFavorites (state, item) {
-			var index = state.favorites.findIndex(c => c.imdbID == item.imdbID);
+			let index = state.favorites.findIndex(c => c.imdbID == item.imdbID);
 			if(index != (-1)){
 				Vue.delete(state.favorites, index);
 			}

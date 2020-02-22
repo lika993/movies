@@ -19,9 +19,7 @@
 					</div>
 				</div>
 				<div class="movie-item__nav">
-					<button v-if="$route.name == 'home'" :data-id="movie['imdbID']" class="button button_sm button_like movie-item__button" @click="like">
-						
-					</button>
+						<button v-if="$route.name == 'home'" :data-id="movie['imdbID']"  class="button button_sm button_like" @click="like" :class="{button_like_active: movie.favoriteFlag && movie.favoriteFlag == true}"></button>
 					<button v-if="$route.name == 'home'" :data-id="movie['imdbID']" class="button button_sm button_dislike" @click="dislike">
 						
 					</button>
@@ -39,18 +37,15 @@
 					<div class="movie-item__title">
 						{{movie['Title']}}
 					</div>
-					<div class="movie-item__id">
-						{{movie['imdbID']}}
-					</div>
 					<div class="movie-item__year">
 						{{movie['Year']}}
 					</div>
 					<div class="movie-item__more-info-link-wrapper">
-						<router-link :to="'/movie/' + movie['imdbID']" class="movie-item__more-info-link">More</router-link>
+						<button @click="showMore" :data-id="movie['imdbID']" class="movie-item__more-info-link"">More</button>
 					</div>
 				</div>
 				<div class="movie-item__nav">
-					<button v-if="$route.name == 'home'" :data-id="movie['imdbID']"  class="button button_sm button_like" @click="like"></button>
+					<button v-if="$route.name == 'home'" :data-id="movie['imdbID']"  class="button button_sm button_like" @click="like" :class="{button_like_active: movie.favoriteFlag && movie.favoriteFlag == true}"></button>
 					<button v-if="$route.name == 'home'" :data-id="movie['imdbID']" class="button button_sm button_dislike" @click="dislike"></button>
 					<button v-if="$route.name != 'home'" :data-id="movie['imdbID']" class="button button_sm button_delete" @click="del">del</button>		
 				</div>
@@ -114,14 +109,17 @@
 					let id = ctx.target.dataset.id;
 				
 					if((this.$store.getters.doneFavorites != false)){
-						this.$store.commit('deleteFromFavorites', this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id}))
+						let movie = this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id});
+						this.$store.commit('deleteFromFavorites', movie)
+						movie.favoriteFlag = false;
+						this.$store.commit('changeMovieProps', movie)
 					}
 				}
 				if((this.$route.name == 'blackList')){
 					let id = ctx.target.dataset.id;
-				
+					let movie = this.$store.getters.doneBlackFilms.find((element, index, array) => {return element.imdbID == id});
 					if((this.$store.getters.doneBlackFilms != false)){
-						this.$store.commit('deleteFromBlackFilms', this.$store.getters.doneBlackFilms.find((element, index, array) => {return element.imdbID == id}))
+						this.$store.commit('deleteFromBlackFilms', movie)
 					}
 				}
 			},
@@ -130,7 +128,10 @@
 				if((this.$route.name != 'favorites') && (this.$route.name != 'black-list')){
 					let id = ctx.target.dataset.id;
 					if((this.$store.getters.doneMovies != false)){
-					this.$store.commit('addToFavorites', this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id}))
+						let movie = this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id});
+						this.$store.commit('addToFavorites', movie)
+						movie.favoriteFlag = true;
+						this.$store.commit('changeMovieProps', movie)
 					}
 				}		
 			},
@@ -139,8 +140,10 @@
 					let id = ctx.target.dataset.id;
 					console.log(ctx.target);
 					if((this.$store.getters.doneMovies != false)){
-						this.$store.commit('addToBlackFilms', this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id}));
-						this.$store.commit('deleteFromMovies', this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id}));
+						let movie = this.$store.getters.doneMovies.find((element, index, array) => {return element.imdbID == id});
+						this.$store.commit('addToBlackFilms', movie);
+						this.$store.commit('deleteFromMovies', movie);
+
 
 					}
 				}

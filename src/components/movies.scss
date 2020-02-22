@@ -16,6 +16,12 @@
 				fill: #fff;
 			}
 		}
+		&__more-info-link{
+			color: #6152a8;
+			border: #6152a8 1px solid;
+			height: 25px;
+			padding: 0 7px;
+		}
 		&__poster{
 			min-height: 250px;
 			flex-basis: 200px;
@@ -93,7 +99,7 @@
 		background-repeat: no-repeat;
 		background-color: #6152a8;
 		transition: 0.5s all;
-		&:hover{
+		&_active{
 			background-color: #000;
 			background-size: 70%;
 			background-image: url('../assets/images/heart.svg');
