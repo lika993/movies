@@ -1,5 +1,5 @@
 <template>
-	<div class="search">
+	<div v-if="$route.name == 'home'" class="search">
 		<div class="centered search__centered">
 			<form class="search__form">
 				<div class="">
@@ -33,7 +33,7 @@
 			},
 			getMovies(){
 				 axios
-      				.get('http://www.omdbapi.com/?apikey=c05eca02&s=' + this.title)
+      				.get('http://www.omdbapi.com/?apikey=' + KEY + '&s=' + this.title)
 					.then((res) => {
 						if (res.statusText == "OK"){
 						  
